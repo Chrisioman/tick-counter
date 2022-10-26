@@ -11,6 +11,16 @@ import java.awt.*;
 public interface TickCounterConfig extends Config {
 
 
+        @ConfigItem(
+                keyName = "showDamage",
+                name = "Show damage",
+                description = "Show Individual Damage"
+        )
+        default boolean showDamage()
+        {
+                return true;
+        }
+
 @ConfigItem(
         keyName = "resetInstance",
         name = "Reset on new instances",

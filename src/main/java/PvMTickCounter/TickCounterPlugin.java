@@ -2,9 +2,9 @@ package PvMTickCounter;
 
 import com.google.inject.Provides;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.Client;
-import net.runelite.api.Player;
+import net.runelite.api.*;
 import net.runelite.api.events.AnimationChanged;
+import net.runelite.api.events.HitsplatApplied;
 import net.runelite.api.kit.KitType;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
@@ -57,7 +57,22 @@ public class TickCounterPlugin extends Plugin{
         overlayManager.remove(overlay);
         activity.clear();
     }
+    @Subscribe
+    public void onHitsplatApplied(HitsplatApplied hitsplatApplied) {
+        Player player = client.getLocalPlayer();
+        Actor actor = hitsplatApplied.getActor();
+        if (!(actor instanceof NPC)) {
+            return;
+        }
 
+        Hitsplat hitsplat = hitsplatApplied.getHitsplat();
+        final int npcId = ((NPC) actor).getId();
+
+        if (hitsplat.isMine())
+        {
+            int hit = hitsplat.getAmount();
+
+    }
     @Subscribe
     public void onAnimationChanged(AnimationChanged e){
         if (!(e.getActor() instanceof Player))

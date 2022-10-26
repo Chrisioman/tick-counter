@@ -92,7 +92,7 @@ public class TickCounterUtil {
 
     public Integer getTicks(Integer animationID, Integer weaponID)
     {
-        Integer ticks = aniTM.get(animationID);
+        Integer ticks = aniTM.getOrDefault(animationID, 0);
         if(ticks > 0){
             return ticks;
         }else{

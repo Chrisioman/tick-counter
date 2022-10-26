@@ -28,7 +28,7 @@ public class TickCounterPlugin extends Plugin{
     private Client client;
 
     private TickCounterUtil id;
-
+    private Integer amount=0;
     @Provides
     TickCounterConfig provideConfig(ConfigManager configManager)
     {
@@ -38,8 +38,6 @@ public class TickCounterPlugin extends Plugin{
     private TickCounterOverlay overlay;
 
     Map<String, Integer> activity = new HashMap<>();
-
-    private HashMap<Player, Boolean> blowpiping = new HashMap<>();
     boolean instanced = false;
     boolean prevInstance = false;
 
@@ -66,13 +64,20 @@ public class TickCounterPlugin extends Plugin{
         }
 
         Hitsplat hitsplat = hitsplatApplied.getHitsplat();
-        final int npcId = ((NPC) actor).getId();
 
         if (hitsplat.isMine())
         {
             int hit = hitsplat.getAmount();
 
+            amount += hit; }
+
     }
+
+    public Integer getDamage(){
+        return amount;
+
+    }
+
     @Subscribe
     public void onAnimationChanged(AnimationChanged e){
         if (!(e.getActor() instanceof Player))

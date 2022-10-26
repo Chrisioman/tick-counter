@@ -40,6 +40,12 @@ public class TickCounterOverlay extends OverlayPanel
     {
         List<LayoutableRenderableEntity> elems = panelComponent.getChildren();
         elems.clear();
+
+        if(config.showDamage()) {
+            elems.add(TitleComponent.builder().text("Damage Dealt").color(config.damageTitleColor()).build());
+            elems.add(TitleComponent.builder().text(plugin.getDamage().toString()).color(config.damageTextColor()).build());
+        }
+
         List<Map.Entry<String, Integer>> list = new ArrayList<>(plugin.activity.entrySet());
         list.sort(new Comparator<Map.Entry<String, Integer>>()
         {
@@ -52,7 +58,7 @@ public class TickCounterOverlay extends OverlayPanel
                 return value;
             }
         });
-        if (list.size() != 0) elems.add(TitleComponent.builder().text("PvM Tick Counter").color(config.titleColor()).build());
+        if (list.size() != 0) elems.add(TitleComponent.builder().text("Combat Ticks").color(config.titleColor()).build());
         int total = 0;
         for (Map.Entry<String, Integer> e : list)
         {

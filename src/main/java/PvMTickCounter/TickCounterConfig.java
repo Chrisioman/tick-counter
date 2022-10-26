@@ -10,7 +10,6 @@ import java.awt.*;
 @ConfigGroup("PvMTickCounter")
 public interface TickCounterConfig extends Config {
 
-
         @ConfigItem(
                 keyName = "showDamage",
                 name = "Show damage",
@@ -21,6 +20,19 @@ public interface TickCounterConfig extends Config {
                 return true;
         }
 
+        @ConfigItem(
+                keyName = "damageTitleColor",
+                name = "Damage Title Color",
+                description = "Damage Title Color"
+        )
+        default Color damageTitleColor(){ return Color.WHITE; }
+
+        @ConfigItem(
+                keyName = "damageTextColor",
+                name = "Damage Text Color",
+                description = "Damage Text Color"
+        )
+        default Color damageTextColor(){ return Color.WHITE; }
 @ConfigItem(
         keyName = "resetInstance",
         name = "Reset on new instances",
